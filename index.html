@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+<meta name="description" content="We're building something. Join the Discord to follow along.">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #08080a;
+    --bg-soft: #0d0d10;
+    --glow: 88, 101, 242;      /* discord blurple, used at low alpha for ambience */
+    --accent: #5865f2;
+    --accent-hover: #6f78f4;
+    --text-muted: #75757e;
+    --border: rgba(255, 255, 255, 0.09);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: #f5f5f7;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ambient breathing glow behind the logo */
+  .glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38vw 38vw at 50% 42%, rgba(var(--glow), 0.16), transparent 70%),
+      radial-gradient(60vw 60vw at 50% 55%, rgba(var(--glow), 0.06), transparent 75%);
+    animation: breathe 9s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathe {
+    0%   { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1;   transform: scale(1.06); }
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .logo {
+    width: min(64vw, 460px);
+    height: auto;
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    animation: reveal 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .cta {
+    margin-top: 56px;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: reveal-cta 1s ease-out 1.9s forwards;
+  }
+
+  @keyframes reveal-cta {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .discord-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    background: rgba(var(--glow), 0.1);
+    border: 1px solid var(--border);
+    color: #f5f5f7;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .discord-button:hover {
+    background: var(--accent);
+    border-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(var(--glow), 0.6);
+  }
+
+  .discord-button:active {
+    transform: translateY(0);
+  }
+
+  .discord-button svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .eyebrow {
+    margin-top: 22px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: reveal-cta 1s ease-out 2.3s forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo, .cta, .eyebrow, .glow {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="glow" aria-hidden="true"></div>
+
+  <main>
+    <img class="logo" src="assets/logo.png" alt="Logo">
+
+    <div class="cta">
+      <a class="discord-button" href="https://discord.gg/t3497tRhbq" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 12.2c0 .9-.67 1.6-1.5 1.6s-1.5-.72-1.5-1.6.67-1.6 1.5-1.6 1.5.72 1.5 1.6ZM18.5 12.2c0 .9-.67 1.6-1.5 1.6s-1.5-.72-1.5-1.6.67-1.6 1.5-1.6 1.5.72 1.5 1.6Z" fill="currentColor"/>
+          <path d="M6.5 6.5C9 5.2 15 5.2 17.5 6.5c1.6 2.4 2.3 5 2 8.5-1.7 1.6-3.6 2.4-5.5 2.7l-.6-1.4c1-.3 1.9-.7 2.7-1.3-2.9 1.3-6.4 1.3-9.4 0 .8.6 1.7 1 2.7 1.3l-.6 1.4c-1.9-.3-3.8-1.1-5.5-2.7-.3-3.5.4-6.1 2-8.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+        Join our Discord
+      </a>
+    </div>
+
+    <div class="eyebrow">Something's on the way</div>
+  </main>
+
+</body>
+</html>
